@@ -1,0 +1,28 @@
+{
+	"name": "infuse/migrations",
+	"description": "Migrations module for Infuse Framework",
+	"type": "library",
+	"keywords": ["infuse","framework","migrations","database","phinx"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "jaredtking",
+			"email": "j@jaredtking.com",
+			"homepage": "http://jaredtking.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/infusephp/migrations/issues",
+		"source": "https://github.com/infusephp/migrations"
+	},
+    "autoload": {
+        "psr-4": {"App\\Migrations\\": "src/"}
+    },
+	"require": {
+		"php": ">=5.4.0",
+		"robmorgan/phinx": "~0.5"
+	},
+	"require-dev": {
+		"infuse/infuse": "~1.3"
+	}
+}
