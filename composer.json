@@ -23,6 +23,6 @@
 		"robmorgan/phinx": "~0.5"
 	},
 	"require-dev": {
-		"infuse/infuse": "~1.3"
+		"infuse/infuse": "~1.4"
 	}
 }
