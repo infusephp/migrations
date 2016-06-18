@@ -89,9 +89,9 @@ class MigrateCommand extends Command
         $modules = (empty($module)) ? $this->app['config']->get('modules.migrations') : [$module];
 
         foreach ((array) $modules as $mod) {
-            $migrationPath = $this->getMigrationsDir($mod);
+            $path = $this->getMigrationsDir($mod);
 
-            if (!$migrationPath) {
+            if (!$path) {
                 continue;
             }
 
@@ -99,7 +99,7 @@ class MigrateCommand extends Command
                 $output->writeln("-- Migrating $mod");
             }
 
-            $success = $this->migrateWithPath($migrationPath, $migrateArgs, $output) && $success;
+            $success = $this->migrateWithPath($path, $migrateArgs, $output) && $success;
         }
 
         if ($migrateArgs == 'migrate') {
@@ -113,27 +113,69 @@ class MigrateCommand extends Command
         return $success;
     }
 
+    /**
+     * Gets the migrations directory for a module.
+     *
+     * @param string $module
+     *
+     * @return string|false
+     */
     private function getMigrationsDir($module)
     {
-        // first check for the migrations directory in the
+        // first check if there is a hard-coded migration path
+        // in the configuration
+        $path = $this->getDirFromConfig($module);
+
+        // next check for the migrations directory in the
         // main app folder
-        $appDir = $this->app['config']->get('dirs.app');
-        $migrationPath = "$appDir/$module/migrations";
-
-        // if the app folder did not work then attempt to use
-        // reflection to determine the location of the module
-        // in case it was installed via composer
-        if (!is_dir($migrationPath)) {
-            $controller = 'App\\'.$module.'\Controller';
-
-            if (class_exists($controller)) {
-                $reflection = new ReflectionClass($controller);
-                $migrationPath = dirname($reflection->getFileName()).'/migrations';
-            }
+        if (!$path) {
+            $path = $this->getDirFromApp($module);
         }
 
-        if (is_dir($migrationPath)) {
-            return $migrationPath;
+        // finally, attempt to determine the location of the
+        // migrations path using reflection
+        if (!$path) {
+            $path = $this->getDirWithReflection($module);
+        }
+
+        return $path;
+    }
+
+    private function getDirFromConfig($module)
+    {
+        $migrationPaths = (array) $this->app['config']->get('modules.migrationPaths');
+
+        $path = array_value($migrationPaths, $module);
+        if ($path) {
+            return INFUSE_BASE_DIR.'/'.$path;
+        }
+
+        return false;
+    }
+
+    private function getDirFromApp($module)
+    {
+        $appDir = $this->app['config']->get('dirs.app');
+        $path = "$appDir/$module/migrations";
+
+        if (is_dir($path)) {
+            return $path;
+        }
+
+        return false;
+    }
+
+    private function getDirWithReflection($module)
+    {
+        $controller = 'App\\'.$module.'\Controller';
+
+        if (class_exists($controller)) {
+            $reflection = new ReflectionClass($controller);
+            $path = dirname($reflection->getFileName()).'/migrations';
+
+            if (is_dir($path)) {
+                return $path;
+            }
         }
 
         return false;
