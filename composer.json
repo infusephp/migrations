@@ -16,7 +16,7 @@
 		"source": "https://github.com/infusephp/migrations"
 	},
     "autoload": {
-        "psr-4": {"App\\Migrations\\": "src/"}
+        "psr-4": {"Infuse\\Migrations\\": "src/"}
     },
 	"require": {
 		"php": ">=5.4.0",

@@ -22,7 +22,7 @@ Database migrations module for Infuse Framework. Built on [Phinx](https://github
 		// ...
 		'commands' => [
 			// ...
-			'App\Migrations\Console\MigrateCommand'
+			'Infuse\Migrations\Console\MigrateCommand'
 		]
 	]
 	```

@@ -8,7 +8,7 @@
  * @copyright 2015 Jared King
  * @license MIT
  */
-namespace App\Migrations\Console;
+namespace Infuse\Migrations\Console;
 
 use Infuse\HasApp;
 use JAQB\Session as DatabaseSession;
