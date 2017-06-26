@@ -23,6 +23,7 @@
 		"robmorgan/phinx": "~0.5"
 	},
 	"require-dev": {
-		"infuse/infuse": "~1.4"
+		"infuse/infuse": "~1.4",
+		"phpunit/phpunit": "5.7.*"
 	}
 }
