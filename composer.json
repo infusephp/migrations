@@ -20,7 +20,7 @@
     },
 	"require": {
 		"php": ">=5.4.0",
-		"robmorgan/phinx": "~0.5"
+		"robmorgan/phinx": "~0.8"
 	},
 	"require-dev": {
 		"infuse/infuse": "~1.4",
