@@ -1,23 +1,24 @@
 language: php
 php:
-    - 7.1
-    - 7.0
-    - 5.6
-    - hhvm
+  - 7.2
+  - 7.1
+  - 7.0
+  - 5.6
+  - hhvm
 
 dist: trusty
 sudo: required
 
 before_script:
-    - composer install
-    - mysql -e 'create database mydb;'
+  - composer install
+  - mysql -e 'create database mydb;'
 
 script:
-    - mkdir -p build/logs
-    - vendor/bin/phpunit
+  - mkdir -p build/logs
+  - vendor/bin/phpunit
 
 after_script:
-    - vendor/bin/coveralls
+  - vendor/bin/coveralls
 
 notifications:
-    email: false
+  email: false
