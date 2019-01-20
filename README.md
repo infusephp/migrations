@@ -5,7 +5,6 @@ infuse/migrations
 [![Coverage Status](https://coveralls.io/repos/infusephp/migrations/badge.svg?style=flat)](https://coveralls.io/r/infusephp/migrations)
 [![Latest Stable Version](https://poser.pugx.org/infuse/migrations/v/stable.svg?style=flat)](https://packagist.org/packages/infuse/migrations)
 [![Total Downloads](https://poser.pugx.org/infuse/migrations/downloads.svg?style=flat)](https://packagist.org/packages/infuse/migrations)
-[![HHVM Status](http://hhvm.h4cc.de/badge/infuse/migrations.svg?style=flat)](http://hhvm.h4cc.de/package/infuse/migrations)
 
 Database migrations module for Infuse Framework. Built on [Phinx](https://github.com/robmorgan/phinx).
 
