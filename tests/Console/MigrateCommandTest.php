@@ -1,6 +1,10 @@
 <?php
 
-class MigrateCommandTest extends PHPUnit_Framework_TestCase
+namespace Infuse\Migrations\Test;
+
+use PHPUnit\Framework\TestCase;
+
+class MigrateCommandTest extends TestCase
 {
 	function testMigrate()
 	{
