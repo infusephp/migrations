@@ -184,7 +184,7 @@ class MigrateCommand extends Command
     private function migrateWithPath($path, $migrateArgs, OutputInterface $output)
     {
         $result = 1;
-        $command = "PHINX_MIGRATION_PATH=$path php ".INFUSE_BASE_DIR."/vendor/bin/phinx $migrateArgs -c ".INFUSE_BASE_DIR.'/phinx.php';
+        $command = "PHINX_MIGRATION_PATH=$path php ".INFUSE_BASE_DIR."/vendor/robmorgan/phinx/bin/phinx $migrateArgs -c ".INFUSE_BASE_DIR.'/phinx.php';
 
         ob_start();
         system($command, $result);
